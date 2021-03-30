@@ -21,7 +21,6 @@ if __name__ == "__main__":
     spark = SparkSession \
         .builder \
         .appName('SQL_reading') \
-        .config("spark.mongodb.input.uri", conf_secret_dir["mongodb_config"]["uri"])\
         .getOrCreate()
     spark.SparkContext.setLogLevel('error')
     # creating connection with s3

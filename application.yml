@@ -1,8 +1,8 @@
 source_list:
-  #-SB
-  #-OL
+  - SB
+  - OL
   - CP
-  #-ADDR
+  - ADDR
 target_list:
   - REGIS_DIM
   - CHILD_DIM
@@ -23,8 +23,8 @@ OL:
   sftp_conf:
     filetype: csv
     delimiter: |
-    directory :
-  file_name : ""
+    directory: /home/ubuntu/data
+  file_name: receipts_delta_GBR_14_10_2017.csv
 
 ADDR:
   mongo_conf:

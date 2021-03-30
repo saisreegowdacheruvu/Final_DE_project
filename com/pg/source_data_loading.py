@@ -25,8 +25,8 @@ if __name__ == "__main__":
     spark.sparkContext.setLogLevel('error')
     # creating connection with s3
     hadoop_conf = spark.sparkContext._jsc.hadoopConfiguration()
-    hadoop_conf.set('fs.s3a.access.key', conf_secret_dir['s3_conf']['access_key'])
-    hadoop_conf.set('fs.s3a.secret.key', conf_secret_dir['s3_conf']['secret_key'])
+    hadoop_conf.set("fs.s3a.access.key", conf_secret_dir["s3_conf"]["access_key"])
+    hadoop_conf.set("fs.s3a.secret.key", conf_secret_dir["s3_conf"]["secret_key"])
 
     source = conf_app_dir["source_list"]
 

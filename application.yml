@@ -1,8 +1,8 @@
 source_list:
-  - SB
+  #- SB
   #- OL
   #- CP
-  #- ADDR
+   - ADDR
 target_list:
   - REGIS_DIM
   - CHILD_DIM

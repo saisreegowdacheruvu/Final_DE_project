@@ -11,7 +11,7 @@ if __name__ == "__main__":
     # setting application and secrets config file
     current_dir = os.path.abspath(os.path.dirname(__file__))
     app_dir = os.path.abspath(current_dir + "/../../" + "application.yml")
-    secret_dir = os.path.abspath(current_dir + "/../../" + ".secrets")
+    secret_dir = os.path.abspath(current_dir + "/../../" + ".secret")
 
     conf = open(app_dir)
     conf_app_dir = yaml.load(conf, Loader=yaml.FullLoader)

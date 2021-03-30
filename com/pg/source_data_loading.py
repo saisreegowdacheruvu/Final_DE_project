@@ -22,9 +22,9 @@ if __name__ == "__main__":
         .builder \
         .appName('SQL_reading') \
         .getOrCreate()
-    spark.SparkContext.setLogLevel('error')
+    spark.sparkContext.setLogLevel('error')
     # creating connection with s3
-    hadoop_conf = spark.SparkContext._jsc.hadoopConfiguration()
+    hadoop_conf = spark.sparkContext._jsc.hadoopConfiguration()
     hadoop_conf.set('fs.s3a.access.key', conf_secret_dir['s3_conf']['access_key'])
     hadoop_conf.set('fs.s3a.secret.key', conf_secret_dir['s3_conf']['secret_key'])
 

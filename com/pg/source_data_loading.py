@@ -42,7 +42,7 @@ if __name__ == "__main__":
             df_sql.write \
                 .partitionBy('ind_dt') \
                 .mode("overwrite") \
-                .parquet("s3a://" + conf_app_dir["s3_conf"]["s3_bucket"] + "/" + conf_app_dir["staging_saving"]+"/" +src)
+                .parquet("s3a://" + conf_app_dir["s3_conf"]["s3_bucket"] + "/" + conf_app_dir["s3_conf"]["staging_saving"]+"/" +src)
 
         elif src == "OL":
             # reading data from sftp server
@@ -55,7 +55,7 @@ if __name__ == "__main__":
             df_sftp.write \
                    .partitionBy('ind_dt') \
                    .mode("overwrite") \
-                   .parquet("s3a://" + conf_app_dir["s3_conf"]["s3_bucket"] + "/" + conf_app_dir["staging_saving"]+"/" +src)
+                   .parquet("s3a://" + conf_app_dir["s3_conf"]["s3_bucket"] + "/" + conf_app_dir["s3_conf"]["staging_saving"]+"/" +src)
         elif src == "CP":
             # read data from csv file
             # file_name1 = ""
@@ -68,7 +68,7 @@ if __name__ == "__main__":
             df_csv.write \
                   .partitionBy('ind_dt') \
                   .mode("overwrite") \
-                  .parquet("s3a://" + conf_app_dir["s3_conf"]["s3_bucket"] + "/" + conf_app_dir["staging_saving"]+"/" +src)
+                  .parquet("s3a://" + conf_app_dir["s3_conf"]["s3_bucket"] + "/" + conf_app_dir["s3_conf"]["staging_saving"]+"/" +src)
         
     # read data from mongo db
         elif src == "ADDR":
@@ -80,7 +80,7 @@ if __name__ == "__main__":
             df_mongo.write\
                    .partitionBy('ind_dt') \
                    .mode("overwrite")\
-                   .parquet("s3a://" + conf_app_dir["s3_conf"]["s3_bucket"] + "/" + conf_app_dir["staging_saving"]+"/" +src)
+                   .parquet("s3a://" + conf_app_dir["s3_conf"]["s3_bucket"] + "/" + conf_app_dir["s3_conf"]["staging_saving"]+"/" +src)
 
 
 

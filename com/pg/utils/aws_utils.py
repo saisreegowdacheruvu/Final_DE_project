@@ -1,18 +1,18 @@
 # function to read all necessary info from mysql and return a dataframe
 def read_from_mysql(spark, conf_app_dir, conf_secret_dir):
-    jdbc_params = {"url": get_mysql_jdbs_url(conf_secret_dir),
-                   "lowerBound": "1",
-                   "upperBound": "100",
-                   "db_table": conf_app_dir["mysql_config"]["db_table"],
-                   "numPartition": 2,
-                   "partitionColumn": conf_app_dir["mysql_config"]["partition_column"],
-                   "user": conf_secret_dir["mysql_config"]["user"],
-                   "password": conf_secret_dir["mysql_config"]["password"]
-                   }
+    jdbcparams = {"url": get_mysql_jdbc_url(conf_secret_dir),
+                  "lowerBound": "1",
+                  "upperBound": "100",
+                  "db_table": conf_app_dir["mysql_config"]["db_table"],
+                  "numPartition": 2,
+                  "partitionColumn": conf_app_dir["mysql_config"]["partition_column"],
+                  "user": conf_secret_dir["mysql_config"]["user"],
+                  "password": conf_secret_dir["mysql_config"]["password"]
+                  }
     df_sql = spark.read \
         .format("jdbc") \
         .option("driver", 'com.mysql.cj.jdbc.Driver') \
-        .options(**jdbc_params) \
+        .options(**jdbcparams) \
         .load()
     return df_sql
 
@@ -50,11 +50,12 @@ def read_from_mongodb(spark, conf_app_dir):
     return df_mongo
 
 
-def get_mysql_jdbs_url(mysql_config: dict):
+def get_mysql_jdbc_url(mysql_config: dict):
     host = mysql_config["mysql_config"]["host"]
     port = mysql_config["mysql_config"]["port"]
     database = mysql_config["mysql_config"]["Dbname"]
     return "jdbc:mysql://{}:{}/{}?autoReconnect=true&useSSL=false".format(host, port, database)
+
 
 
 def get_redshift_jdbc_url(redshift_config:dict):

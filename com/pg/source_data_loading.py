@@ -1,6 +1,6 @@
 #read data from mysql and add a column and write data to s3
 from pyspark.sql import SparkSession
-from utilis import aws_utils as ut
+from utils import aws_utils as ut
 import os
 import yaml
 from pyspark.sql.functions import *

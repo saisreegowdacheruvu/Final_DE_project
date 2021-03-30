@@ -15,8 +15,8 @@ CP:
 
 SB:
   mysql_config:
-    db_table : TRANSACTIONSYNC
-    partition_column : Transaction_id
+    db_table : testdb.TRANSACTIONSYNC
+    partition_column : App_Transaction_Id
     
 OL:
   sftp_conf:

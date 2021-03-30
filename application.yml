@@ -1,7 +1,7 @@
 source_list:
-  #-SB
+  -SB
   #-OL
-  -CP
+  #-CP
   #-ADDR
 target_list:
   -REGIS_DIM
@@ -10,8 +10,8 @@ target_list:
 
 CP:
   s3_conf:
-    s3_bucket : DEproject
-  file_name :KC_Extract_1_20171009.csv
+    s3_bucket : project
+  file_name : KC_Extract_1_20171009.csv
 
 SB:
   mysql_config:
@@ -33,7 +33,7 @@ ADDR:
 
 s3_conf:
   s3_bucket : project
-  staging_saving : project_output
+  staging_saving : projectoutput01
 
 redhift_config:
   filetype: csv

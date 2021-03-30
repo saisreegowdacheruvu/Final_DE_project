@@ -1,12 +1,12 @@
 source_list:
   #-SB
   #-OL
-   -CP
+  - CP
   #-ADDR
 target_list:
-  -REGIS_DIM
-  -CHILD_DIM
-  -RTL_TXN_FACT
+  - REGIS_DIM
+  - CHILD_DIM
+  - RTL_TXN_FACT
 
 CP:
   s3_conf:

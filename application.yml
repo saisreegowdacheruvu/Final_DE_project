@@ -32,7 +32,7 @@ ADDR:
     collection: students
 
 s3_conf:
-  s3_bucket : project
+  s3_bucket : output94
   staging_saving : projectoutput01
 
 redhift_config:

@@ -3,10 +3,10 @@ def read_from_mysql(spark, conf_app_dir, conf_secret_dir):
     jdbc_params = {"url": get_mysql_jdbs_url(conf_secret_dir),
                    "lowerBound": "1",
                    "upperBound": "100",
-                   "db_table": conf_app_dir["mysql_config"]["mysql_config"],
+                   "db_table": conf_app_dir["mysql_config"]["db_table"],
                    "numPartition": 2,
                    "partitionColumn": conf_app_dir["mysql_config"]["partition_column"],
-                   "user": conf_secret_dir["mysql_config"]["username"],
+                   "user": conf_secret_dir["mysql_config"]["user"],
                    "password": conf_secret_dir["mysql_config"]["password"]
                    }
     df_sql = spark.read \
@@ -51,9 +51,9 @@ def read_from_mongodb(spark, conf_app_dir):
 
 
 def get_mysql_jdbs_url(mysql_config: dict):
-    host = mysql_config["mysql_config"]["hostname"]
+    host = mysql_config["mysql_config"]["host"]
     port = mysql_config["mysql_config"]["port"]
-    database = mysql_config["mysql_config"]["database"]
+    database = mysql_config["mysql_config"]["Dbname"]
     return "jdbc:mysql://{}:{}/{}?autoReconnect=true&useSSL=false".format(host, port, database)
 
 

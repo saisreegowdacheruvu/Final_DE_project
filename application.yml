@@ -15,10 +15,9 @@ CP:
 
 SB:
   mysql_config:
-    db_table : Transaction
+    db_table : TRANSACTIONSYNC
     partition_column : Transaction_id
-    query :
-
+    
 OL:
   sftp_conf:
     filetype: csv

@@ -43,7 +43,8 @@ def read_from_s3(spark, conf_app_dir):
 
 # read data from mongo db
 def read_from_mongodb(spark, conf_app_dir):
-    df_mongo = spark.read.format("com.mongodb.spark.sql.DefaultSource") \
+    df_mongo = spark.read \
+        .format("com.mongodb.spark.sql.DefaultSource") \
         .option("database", conf_app_dir["mongo_conf"]["database"]) \
         .option("collection", conf_app_dir["mongo_conf"]["collection"]) \
         .load()

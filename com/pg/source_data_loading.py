@@ -46,7 +46,7 @@ if __name__ == "__main__":
 
         elif src == "OL":
             # reading data from sftp server sftp_conf
-            pem_file_path = os.path.abspath(current_dir + "/../../../" + conf_secret_dir["sftp_conf"]["pem"])
+            pem_file_path = os.path.abspath(current_dir + "/../../../../" + conf_secret_dir["sftp_conf"]["pem"])
             print(pem_file_path)
             # file_name = ""
             df_sftp = ut.read_from_sftp(spark, conf_secret_dir, src_config, pem_file_path) \

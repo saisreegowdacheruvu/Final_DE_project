@@ -28,6 +28,7 @@ if __name__ == "__main__":
     hadoop_conf.set("fs.s3a.secret.key", conf_secret_dir["s3_conf"]["secret_key"])
 
     source = conf_app_dir["source_list"]
+    print(source)
 
     for src in source:
         src_config = conf_app_dir[src]
@@ -44,8 +45,9 @@ if __name__ == "__main__":
                 .parquet("s3a://" + conf_app_dir["s3_conf"]["s3_bucket"] + "/" + conf_app_dir["s3_conf"]["staging_saving"]+"/" +src)
 
         elif src == "OL":
-            # reading data from sftp server
-            print(conf_app_dir["sftp_conf"]["directory"] + "/" + conf_app_dir["file_name"])
+            # reading data from sftp server sftp_conf
+            path = src_config["sftp_conf"]["directory"] + "/" + src_config["file_name"]
+            print(path)
             pem_file_path = os.path.abspath(current_dir + "/../../../../" + conf_secret_dir["sftp_conf"]["pem"])
             print(pem_file_path)
             # file_name = ""

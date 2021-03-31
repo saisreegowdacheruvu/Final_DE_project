@@ -5,9 +5,7 @@ import os
 import yaml
 from pyspark.sql.functions import *
 if __name__ == "__main__":
-    os.environ["PYSPARK_SUBMIT_ARGS"]=(
-        '--package "org.apache.hadoop:hadoop-aws:2.7.4" pyspark shell'
-    )
+    
     # setting application and secrets config file
     current_dir = os.path.abspath(os.path.dirname(__file__))
     app_dir = os.path.abspath(current_dir + "/../../" + "application.yml")
@@ -73,6 +71,8 @@ if __name__ == "__main__":
         
     # read data from mongo db
         elif src == "ADDR":
+            print(src_config)
+            print(src_config["mongo_conf"]["collection"])
             df_mongo = ut.read_from_mongodb(spark, src_config)\
                         .withColumn("ind_dt", current_date().alias("current_date"))
             df_mongo.printSchema()

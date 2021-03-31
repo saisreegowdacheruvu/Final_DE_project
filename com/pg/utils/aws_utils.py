@@ -46,6 +46,7 @@ def read_from_mongodb(spark, src_config):
     df_mongo = spark.read \
         .format("com.mongodb.spark.sql.DefaultSource") \
         .option("database", src_config["mongo_conf"]["database"]) \
+        .option("collection", src_config["mongo_conf"]["collection"]) \
         .load()
     return df_mongo
 

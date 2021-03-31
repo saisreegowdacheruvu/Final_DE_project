@@ -24,11 +24,10 @@ def read_from_sftp(spark, conf_secret_dir, conf_app_dir, pem_file_path):
         .option("host", conf_secret_dir["sftp_conf"]["host"]) \
         .option("port", conf_secret_dir["sftp_conf"]["port"]) \
         .option("user", conf_secret_dir["sftp_conf"]["username"]) \
-        .option("password", conf_secret_dir["sftp_conf"]["password"]) \
         .option("pem", pem_file_path) \
         .option('filetype', conf_app_dir["sftp_conf"]["filetype"]) \
         .option('delimiter', conf_app_dir["sftp_conf"]["delimiter"]) \
-        .load(conf_app_dir["sftp_conf"]["directory"]+ "/" + conf_app_dir["file_name"])
+        .load(conf_app_dir["sftp_conf"]["directory"] + "/" + conf_app_dir["file_name"])
     return df_sftp
 
 

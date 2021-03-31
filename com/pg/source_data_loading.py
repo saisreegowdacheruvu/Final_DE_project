@@ -73,6 +73,7 @@ if __name__ == "__main__":
         elif src == "ADDR":
             print(src_config)
             print(src_config["mongo_conf"]["collection"])
+            print(conf_secret_dir["mongodb_config"]["uri"])
             df_mongo = ut.read_from_mongodb(spark, src_config)\
                         .withColumn("ind_dt", current_date().alias("current_date"))
             df_mongo.printSchema()

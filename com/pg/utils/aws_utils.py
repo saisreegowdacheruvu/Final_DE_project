@@ -18,16 +18,16 @@ def read_from_mysql(spark, conf_app_dir, conf_secret_dir):
 
 
 # function to read data from SFTP server and return dataframe
-def read_from_sftp(spark, conf_secret_dir, conf_app_dir, pem_file_path):
+def read_from_sftp(spark, conf_secret_dir, src_config, pem_file_path):
     df_sftp = spark.read \
         .format("com.springml.spark.sftp") \
         .option("host", conf_secret_dir["sftp_conf"]["host"]) \
         .option("port", conf_secret_dir["sftp_conf"]["port"]) \
         .option("user", conf_secret_dir["sftp_conf"]["username"]) \
         .option("pem", pem_file_path) \
-        .option('filetype', conf_app_dir["sftp_conf"]["filetype"]) \
-        .option('delimiter', conf_app_dir["sftp_conf"]["delimiter"]) \
-        .load(conf_app_dir["sftp_conf"]["directory"] + "/" + conf_app_dir["file_name"])
+        .option('filetype', src_config["sftp_conf"]["filetype"]) \
+        .option('delimiter', src_config["sftp_conf"]["delimiter"]) \
+        .load(src_config["sftp_conf"]["directory"] + "/" + src_config["file_name"])
     return df_sftp
 
 

@@ -5,9 +5,9 @@ def read_from_mysql(spark, src_config, conf_secret_dir):
     jdbc_params = {"url": get_mysql_jdbc_url(conf_secret_dir),
                    "lowerBound": "1",
                    "upperBound": "100",
-                   "dbtable": "(select * from testdb.TRANSACTIONSYNC) as my_table",
-                   "numPartition": 2,
                    "partitionColumn": src_config["mysql_config"]["partition_column"],
+                   "dbtable": "(select * from testdb.TRANSACTIONSYNC where partitionColumn between lowerBound and upperBound) as my_table",
+                   "numPartition": 2,
                    "user": conf_secret_dir["mysql_config"]["user"],
                    "password": conf_secret_dir["mysql_config"]["password"]
                    }

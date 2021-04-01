@@ -1,20 +1,19 @@
 # function to read all necessary info from mysql and return a dataframe
 def read_from_mysql(spark, src_config, conf_secret_dir):
-    print(get_mysql_jdbc_url(conf_secret_dir))
-    print(src_config["mysql_config"]["dbtable"])
     jdbc_params = {"url": get_mysql_jdbc_url(conf_secret_dir),
-                   "dbtable": "(select * from testdb.TRANSACTIONSYNC as my_table)",
-                   "user": conf_secret_dir["mysql_config"]["user"],
-                   "password": conf_secret_dir["mysql_config"]["password"]
+                   "lowerBound": "1",
+                   "upperBound": "100",
+                   "dbtable": src_config["mysql_conf"]["dbtable"],
+                   "numPartitions": "2",
+                   "partitionColumn": src_config["mysql_conf"]["partition_column"],
+                   "user": conf_secret_dir["mysql_conf"]["username"],
+                   "password": conf_secret_dir["mysql_conf"]["password"]
                    }
-    df_sql = spark.read \
-        .format("jdbc") \
-        .option("driver", 'com.mysql.cj.jdbc.Driver') \
+    print(jdbc_params)
+    df_sql = spark\
+        .read.format("jdbc")\
+        .option("driver", "com.mysql.cj.jdbc.Driver")\
         .options(**jdbc_params)\
-        .option("lowerBound", 1) \
-        .option("upperBound", 100) \
-        .option("partitionColumn", src_config["mysql_config"]["partition_column"]) \
-        .option("numPartition", 2) \
         .load()
     return df_sql
 

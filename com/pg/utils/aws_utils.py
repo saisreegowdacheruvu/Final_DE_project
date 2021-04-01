@@ -1,11 +1,11 @@
 # function to read all necessary info from mysql and return a dataframe
 def read_from_mysql(spark, src_config, conf_secret_dir):
     print(get_mysql_jdbc_url(conf_secret_dir))
-    print(src_config["mysql_config"]["query"])
+    print(src_config["mysql_config"]["dbtable"])
     jdbc_params = {"url": get_mysql_jdbc_url(conf_secret_dir),
                    "lowerBound": "1",
                    "upperBound": "100",
-                   "dbtable": src_config["mysql_config"]["dbtable"],
+                   "dbtable": "(select * from testdb.TRANSACTIONSYNC) as my_table",
                    "numPartition": 2,
                    "partitionColumn": src_config["mysql_config"]["partition_column"],
                    "user": conf_secret_dir["mysql_config"]["user"],

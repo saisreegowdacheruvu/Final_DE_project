@@ -15,7 +15,7 @@ CP:
 
 SB:
   mysql_config:
-    db_table : TRANSACTIONSYNC
+    query : select * from testdb.TRANSACTIONSYNC
     partition_column : App_Transaction_Id
     
 OL:

@@ -6,7 +6,7 @@ def read_from_mysql(spark, src_config, conf_secret_dir):
                    "dbtable": src_config["mysql_conf"]["dbtable"],
                    "numPartitions": "2",
                    "partitionColumn": src_config["mysql_conf"]["partition_column"],
-                   "user": conf_secret_dir["mysql_conf"]["username"],
+                   "user": conf_secret_dir["mysql_conf"]["user"],
                    "password": conf_secret_dir["mysql_conf"]["password"]
                    }
     print(jdbc_params)

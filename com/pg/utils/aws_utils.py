@@ -11,10 +11,10 @@ def read_from_mysql(spark, src_config, conf_secret_dir):
         .format("jdbc") \
         .option("driver", 'com.mysql.cj.jdbc.Driver') \
         .options(**jdbc_params)\
-        .option("lowerBound", "1") \
-        .option("upperBound", "100") \
+        .option("lowerBound", 1) \
+        .option("upperBound", 100) \
         .option("partitionColumn", src_config["mysql_config"]["partition_column"]) \
-        .option("numPartition", "2") \
+        .option("numPartition", 2) \
         .load()
     return df_sql
 

@@ -14,7 +14,7 @@ CP:
   file_name : KC_Extract_1_20171009_modified.csv
 
 SB:
-  mysql_config:
+  mysql_conf:
     dbtable : testdb.TRANSACTIONSYNC
     partition_column : App_Transaction_Id
     

@@ -52,9 +52,9 @@ def read_from_mongodb(spark, src_config):
 
 
 def get_mysql_jdbc_url(mysql_config: dict):
-    host = mysql_config["mysql_config"]["host"]
-    port = mysql_config["mysql_config"]["port"]
-    database = mysql_config["mysql_config"]["Dbname"]
+    host = mysql_config["mysql_conf"]["host"]
+    port = mysql_config["mysql_conf"]["port"]
+    database = mysql_config["mysql_conf"]["Dbname"]
     return "jdbc:mysql://{}:{}/{}?autoReconnect=true&useSSL=false".format(host, port, database)
 
 

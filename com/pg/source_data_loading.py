@@ -34,6 +34,7 @@ if __name__ == "__main__":
         src_config = conf_app_dir[src]
         if src == "SB":
             # reading data from mysql
+            print('read data from mysql')
             df_sql = ut.read_from_mysql(spark, src_config, conf_secret_dir) \
                 .withColumn("ind_dt", current_date().alias("current_date"))
             df_sql.printSchema()
@@ -43,13 +44,14 @@ if __name__ == "__main__":
                 .partitionBy('ind_dt') \
                 .mode("overwrite") \
                 .parquet("s3a://" + conf_app_dir["s3_conf"]["s3_bucket"] + "/" + conf_app_dir["s3_conf"]["staging_saving"]+"/" +src)
-
+            print('writing data to s3 from sql is completed')
         elif src == "OL":
             # reading data from sftp server sftp_conf
             pem_file_path = os.path.abspath(current_dir + "/../../" + conf_secret_dir["sftp_conf"]["pem"])
             print(pem_file_path)
             print(src_config["sftp_conf"]["directory"] + "/" + src_config["file_name"])
             # file_name = ""
+            print('read data from sftp')
             df_sftp = ut.read_from_sftp(spark, conf_secret_dir, src_config, pem_file_path) \
                 .withColumn("ind_dt", current_date().alias("current_date"))
             df_sftp.printSchema()
@@ -58,9 +60,11 @@ if __name__ == "__main__":
                    .partitionBy('ind_dt') \
                    .mode("overwrite") \
                    .parquet("s3a://" + conf_app_dir["s3_conf"]["s3_bucket"] + "/" + conf_app_dir["s3_conf"]["staging_saving"]+"/" +src)
+            print('writing data to s3 from sftp is completed')
         elif src == "CP":
             # read data from csv file
             # file_name1 = ""
+            print('read data from s3')
             df_csv = ut.read_from_s3(spark, src_config) \
                .withColumn("ind_dt", current_date().alias("current_date"))
 
@@ -71,12 +75,13 @@ if __name__ == "__main__":
                   .partitionBy('ind_dt') \
                   .mode("overwrite") \
                   .parquet("s3a://" + conf_app_dir["s3_conf"]["s3_bucket"] + "/" + conf_app_dir["s3_conf"]["staging_saving"]+"/" +src)
-        
+            print('writing data to s3 from s3 is completed')
     # read data from mongo db
         elif src == "ADDR":
             print(src_config)
             print(src_config["mongo_conf"]["collection"])
             print(conf_secret_dir["mongodb_config"]["uri"])
+            print('read data from mongodb')
             df_mongo = ut.read_from_mongodb(spark, src_config)\
                         .withColumn("ind_dt", current_date().alias("current_date"))
             df_mongo.printSchema()
@@ -86,7 +91,7 @@ if __name__ == "__main__":
                    .partitionBy('ind_dt') \
                    .mode("overwrite")\
                    .parquet("s3a://" + conf_app_dir["s3_conf"]["s3_bucket"] + "/" + conf_app_dir["s3_conf"]["staging_saving"]+"/" +src)
-
+            print('writing data to s3 from mongodb is completed')
 
 
 

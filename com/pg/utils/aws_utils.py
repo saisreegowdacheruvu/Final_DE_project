@@ -1,7 +1,7 @@
 # function to read all necessary info from mysql and return a dataframe
 def read_from_mysql(spark, src_config, conf_secret_dir):
     print(get_mysql_jdbc_url(conf_secret_dir))
-    print(src_config["mysql_config"]["db_table"])
+    print(src_config["mysql_config"]["query"])
     jdbcparams = {"url": get_mysql_jdbc_url(conf_secret_dir),
                   "lowerBound": "1",
                   "upperBound": "100",

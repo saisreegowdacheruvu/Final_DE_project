@@ -14,7 +14,8 @@ def read_from_mysql(spark, src_config, conf_secret_dir):
         .option("lowerBound", "1") \
         .option("upperBound", "100") \
         .option("partitionColumn", src_config["mysql_config"]["partition_column"]) \
-        .option("numPartition", "2")
+        .option("numPartition", "2") \
+        .load()
     return df_sql
 
 
